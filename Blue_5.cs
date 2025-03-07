@@ -25,13 +25,13 @@ namespace Lab_6
             {
                 _name = name;
                 _surname = surname;
-                _place = -1;
+                _place = 0;
             }
 
             // методы
             public void SetPlace(int place)
             {
-                if (_place != -1 || place <= 0) return;
+                if (_place != 0 || place <= 1) return;
                 _place = place;
             }
 
