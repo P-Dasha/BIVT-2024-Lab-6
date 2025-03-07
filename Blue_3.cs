@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab_6
 {
-    class Blue_3
+    public class Blue_3
     {
         public struct Participant
         {

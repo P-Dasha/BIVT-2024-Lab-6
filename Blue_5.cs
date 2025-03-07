@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab_6
 {
-    class Blue_5
+    public class Blue_5
     {
         public struct Sportsman
         {
@@ -127,10 +127,10 @@ namespace Lab_6
             {
                 if (teams == null || teams.Length == 0) return;
 
-                for (int i = 0; i < teams.Length - 1; i++)
+                for (int i = 0; i < teams.Length; i++)
                     for (int j = 0; j < teams.Length - i - 1; j++)
                     {
-                        if (teams[j + 1].SummaryScore > teams[j].SummaryScore)
+                        if (teams[j].SummaryScore < teams[j + 1].SummaryScore)
                             (teams[j], teams[j + 1]) = (teams[j + 1], teams[j]);
 
                         else if (teams[j + 1].SummaryScore == teams[j].SummaryScore && teams[j + 1].TopPlace < teams[j].TopPlace)
