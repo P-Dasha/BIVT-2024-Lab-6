@@ -14,6 +14,7 @@ namespace Lab_6
             private string _name;
             private string _surname;
             private int[,] _marks;
+            private int _jumpcnt;
 
             // свойства
             public string Name { get { return _name; } }
@@ -22,11 +23,11 @@ namespace Lab_6
             {
                 get
                 {
-                    if (_marks == null) return null;
+                    if (_marks == null || _marks.GetLength(0) == 0 || _marks.GetLength(1) == 0) return null;
 
-                    int[,] copy = new int[2, 5];
-                    for (int i = 0; i < 2; i++)
-                        for (int j = 0; j < 5; j++)
+                    int[,] copy = new int[_marks.GetLength(0), _marks.GetLength(1)];
+                    for (int i = 0; i < _marks.GetLength(0); i++)
+                        for (int j = 0; j < _marks.GetLength(1); j++)
                             copy[i, j] = _marks[i, j];
 
                     return copy;
@@ -36,7 +37,7 @@ namespace Lab_6
             {
                 get
                 {
-                    if (_marks == null) return 0;
+                    if (_marks == null || _marks.GetLength(0) == 0 || _marks.GetLength(1) == 0) return 0;
 
                     int total = 0;
                     foreach (var mark in _marks)
@@ -52,23 +53,19 @@ namespace Lab_6
                 _name = name;
                 _surname = surname;
                 _marks = new int[2, 5];
+                _jumpcnt = 0;
             }
 
             // методы
             public void Jump(int[] result)
             {
-                if (result == null || _marks == null) return;
+                if (result == null || result.Length == 0 || _marks == null || _marks.GetLength(0) == 0 || _marks.GetLength(1) == 0 || _jumpcnt >= 2) return;
 
-                for (int i = 0; i < 2; i++)
+                for (int j = 0; j < 5; j++)
                 {
-                    if (_marks[i, 0] == 0)
-                    {
-                        for (int j = 0; j < 5; j++)
-                            _marks[i, j] = result[j];
-
-                        return;
-                    }
+                    _marks[_jumpcnt, j] = result[j];
                 }
+                _jumpcnt++;
             }
 
             // сортировка по убыванию суммарного результата спортсмена
@@ -76,9 +73,9 @@ namespace Lab_6
             {
                 if (array == null || array.Length == 0) return;
 
-                for (int i = 0; i < array.Length; i++)
+                for (int i = 0; i < array.Length - 1; i++)
                     for (int j = 0; j < array.Length - i - 1; j++)
-                        if (array[j].TotalScore < array[j+1].TotalScore)
+                        if (array[j].TotalScore < array[j + 1].TotalScore)
                             (array[j], array[j + 1]) = (array[j + 1], array[j]);
 
             }
