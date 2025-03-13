@@ -79,10 +79,10 @@ namespace Lab_6
                 {
                     if (_sportsmen == null) return 0;
 
-                    int top = _sportsmen[0].Place;
-                    for (int i = 1; i < _sportsmen.Length; i++)
+                    int top = 18;
+                    for (int i = 0; i < _sportsmen.Length; i++)
                     {
-                        if (top > _sportsmen[i].Place)
+                        if (top > _sportsmen[i].Place && _sportsmen[i].Place != 0)
                             top = _sportsmen[i].Place;
                     }
 
